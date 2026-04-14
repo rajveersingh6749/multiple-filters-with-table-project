@@ -2,31 +2,93 @@ import { useState } from "react";
 import "./App.css";
 
 const DATA = [
-  { name: "Raj", age: 25, city: "Delhi", country: "India", gender: "Male" },
-  { name: "Raj", age: 26, city: "Delhi", country: "India", gender: "Male" },
-  { name: "Ram", age: 27, city: "Mumbai", country: "India", gender: "Male" },
-  { name: "Dan", age: 26, city: "New York", country: "USA", gender: "Male" },
   {
+    id: "1",
+    name: "Raj",
+    age: 25,
+    city: "Delhi",
+    country: "India",
+    gender: "Male",
+  },
+  {
+    id: "2",
+    name: "Raj",
+    age: 26,
+    city: "Delhi",
+    country: "India",
+    gender: "Male",
+  },
+  {
+    id: "3",
+    name: "Ram",
+    age: 27,
+    city: "Mumbai",
+    country: "India",
+    gender: "Male",
+  },
+  {
+    id: "4",
+    name: "Dan",
+    age: 26,
+    city: "New York",
+    country: "USA",
+    gender: "Male",
+  },
+  {
+    id: "5",
     name: "Anita",
     age: 30,
     city: "Mumbai",
     country: "India",
     gender: "Female",
-    zipcode: "233333",
-    DOB: "14-12-2002",
-    fullname: "Anita Singh",
+    // zipcode: "233333",
+    // DOB: "14-12-2002",
+    // full
+    // id: "4", name: "Anita Singh",
   },
-  { name: "John", age: 28, city: "New York", country: "USA", gender: "Male" },
-  { name: "Sara", age: 28, city: "New York", country: "USA", gender: "Female", fullname: "Sara Khan" },
   {
+    id: "6",
+    name: "John",
+    age: 28,
+    city: "New York",
+    country: "USA",
+    gender: "Male",
+  },
+  {
+    id: "7",
+    name: "Sara",
+    age: 28,
+    city: "New York",
+    country: "USA",
+    gender: "Female",
+    // full
+    // id: "4", name: "Sara Khan",
+  },
+  {
+    id: "8",
     name: "Jasmine",
     age: 24,
     city: "Delhi",
     country: "India",
     gender: "Female",
+    // hobby: "music"
   },
-  { name: "Jane", age: 28, city: "New York", country: "USA", gender: "Female" },
-  { name: "Dan", age: 28, city: "New York", country: "USA", gender: "Male" },
+  {
+    id: "9",
+    name: "Jane",
+    age: 28,
+    city: "New York",
+    country: "USA",
+    gender: "Female",
+  },
+  {
+    id: "10",
+    name: "Dan",
+    age: 28,
+    city: "New York",
+    country: "USA",
+    gender: "Male",
+  },
 ];
 
 const AGE_GROUPS = [
@@ -37,60 +99,73 @@ const AGE_GROUPS = [
 
 function App() {
   const [search, setSearch] = useState("");
-  const [selectedCities, setSelectedCities] = useState([]);
-  const [selectedGender, setSelectedGender] = useState("");
-  const [selectedCountries, setSelectedCountries] = useState([]);
-  const [selectedAges, setSelectedAges] = useState([]);
-  // const [filters, setFilters] = useState({})
+  // const [selectedCities, setSelectedCities] = useState([]);
+  // const [selectedGender, setSelectedGender] = useState("");
+  // const [selectedCountries, setSelectedCountries] = useState([]);
+  // const [selectedAges, setSelectedAges] = useState([]);
+  const [filters, setFilters] = useState({});
 
   const searchedData = DATA.filter((person) =>
     person.name.toLowerCase().includes(search.toLowerCase()),
   );
+  // console.log(searchedData)
 
-  const cities = [...new Set(DATA.map((person) => person.city))];
+  // const cities = [...new Set(DATA.map((person) => person.city))];
   // console.log(cities)
 
-  const cityFilteredData = searchedData.filter((person) =>
-    selectedCities.length ? selectedCities.includes(person.city) : true,
-  );
+  // const cityFilteredData = searchedData.filter((person) =>
+  //   selectedCities.length ? selectedCities.includes(person.city) : true,
+  // );
+  // console.log(cityFilteredData);
 
-  const genders = [...new Set(DATA.map((person) => person.gender))];
+  // const genders = [...new Set(DATA.map((person) => person.gender))];
   // console.log(genders);
 
-  const genderFilteredData = cityFilteredData.filter((person) =>
-    selectedGender ? person.gender === selectedGender : true,
-  );
+  // const genderFilteredData = cityFilteredData.filter((person) =>
+  //   selectedGender ? person.gender === selectedGender : true,
+  // );
+  // console.log(genderFilteredData)
 
-  const countries = [...new Set(DATA.map((person) => person.country))];
+  // const countries = [...new Set(DATA.map((person) => person.country))];
   // console.log(countries);
 
-  const countryFilteredData = genderFilteredData.filter((person) =>
-    selectedCountries.length
-      ? selectedCountries.includes(person.country)
-      : true,
-  );
+  // const countryFilteredData = genderFilteredData.filter((person) =>
+  //   selectedCountries.length
+  //     ? selectedCountries.includes(person.country)
+  //     : true,
+  // );
+  // console.log(countryFilteredData);
 
-  // const ages = searchedData.map((a) => a.age);
-  // console.log(ages);
-
-  const ageFilteredData = countryFilteredData.filter((person) => {
-    if (!selectedAges.length) return true;
-    return selectedAges.some(
-      (group) => person.age >= group.min && person.age <= group.max,
-    );
-  });
+  // const ageFilteredData = countryFilteredData.filter((person) => {
+  //   if (!selectedAges.length) return true;
+  //   return selectedAges.some(
+  //     (group) => person.age >= group.min && person.age <= group.max,
+  //   );
+  // });
+  // console.log(ageFilteredData);
 
   // const columns = Object.keys(DATA[0]);
   const columns = [...new Set(DATA.flatMap((obj) => Object.keys(obj)))];
-  // console.log(columns)
+  console.log("columns: ", columns);
 
-  // const filterOptions = {};
-  // columns.forEach((col) => {
+  const filterOptions = {};
 
-  //   filterOptions[col] = [...new Set(DATA.map((p) => p[col]).filter(Boolean))];
-  // });
-  // console.log(filterOptions);
+  columns.forEach((col) => {
+    if (col === "name" || col === "id") return;
 
+    filterOptions[col] = [...new Set(DATA.map((p) => p[col]).filter(Boolean))];
+  });
+  console.log("filter options: ", filterOptions);
+
+  const filteredData = searchedData.filter((person) =>
+    Object.entries(filters).every(([key, value]) => {
+      if (Array.isArray(value)) {
+        if (!value.length) return true;
+        return value.includes(person[key]);
+      }
+      return person[key] === value;
+    }),
+  );
 
   return (
     <div>
@@ -99,9 +174,11 @@ function App() {
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
-          setSelectedCities([]);
-          setSelectedGender("");
-          setSelectedCountries([]);
+          // setSelectedCities([]);
+          // setSelectedGender("");
+          // setSelectedCountries([]);
+          // setSelectedAges([]);
+          setFilters({});
         }}
         placeholder="Search by name..."
       />
@@ -111,7 +188,39 @@ function App() {
 
       <div className="filterContainer">
         <div>
-          {
+          {Object.entries(filterOptions).map(([key, values]) => (
+            <div key={key}>
+              <h4>{key}</h4>
+
+              {values.map((val) => (
+                <label key={val}>
+                  <input
+                    type="checkbox"
+                    name={key}
+                    onChange={() => {
+                      setFilters((prev) => {
+                        const existing = prev[key] || [];
+
+                        // if (key === "gender") {
+                        //   return { ...prev, [key]: val };
+                        // }
+
+                        return {
+                          ...prev,
+                          [key]: existing.includes(val)
+                            ? existing.filter((v) => v !== val)
+                            : [...existing, val],
+                        };
+                      });
+                    }}
+                  />
+                  {val}
+                </label>
+              ))}
+            </div>
+          ))}
+
+          {/* {
             <div>
               <h4>City</h4>
               {cities.map((city) => (
@@ -130,9 +239,9 @@ function App() {
                 </div>
               ))}
             </div>
-          }
+          } */}
 
-          {
+          {/* {
             <div>
               <h4>Gender</h4>
               {genders.map((gender) => (
@@ -146,9 +255,9 @@ function App() {
                 </div>
               ))}
             </div>
-          }
+          } */}
 
-          {
+          {/* {
             <div>
               <h4>Country</h4>
               {countries.map((country) => (
@@ -167,9 +276,9 @@ function App() {
                 </div>
               ))}
             </div>
-          }
+          } */}
 
-          {
+          {/* {
             <div>
               <h4>Age Group</h4>
               {AGE_GROUPS.map((group) => (
@@ -188,7 +297,7 @@ function App() {
                 </div>
               ))}
             </div>
-          }
+          } */}
         </div>
 
         <table border="1">
@@ -205,7 +314,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {ageFilteredData.map((person, index) => (
+            {filteredData.map((person, index) => (
               <tr key={index}>
                 {/* <td>{person.name}</td>
                 <td>{person.age}</td>
